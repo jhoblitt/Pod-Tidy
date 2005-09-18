@@ -1,0 +1,14 @@
+Build.PL
+Changes
+LICENSE
+MANIFEST
+README
+Todo
+lib/Pod/Tidy.pm
+lib/Pod/Tidy.pod
+lib/Pod/Wrap/Pretty.pm
+lib/Pod/Wrap/Pretty.pod
+scripts/podtidy
+t/01_load.t
+t/02_pod_wrap_pretty.t
+t/99_pod.t
