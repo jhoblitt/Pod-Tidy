@@ -1,0 +1,38 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings FATAL => qw( all );
+
+use vars qw( $VERSION );
+$VERSION = '0.01';
+
+use Pod::Tidy;
+
+use Getopt::Long qw( GetOptions :config auto_help auto_version );
+use Pod::Usage qw( pod2usage );
+
+my ($inplace, $nobackup, $recursive, $verbose);
+GetOptions(
+    'inplace'   => \$inplace,
+    'nobackup'  => \$nobackup,
+    'recursive' => \$recursive,
+    'verbose'   => \$verbose,
+) || pod2usage( 2 );
+
+if (@ARGV) {
+    # handle files/dir
+    Pod::Tidy::tidy_files(
+        files       => [@ARGV],
+        recursive   => $recursive,
+        verbose     => $verbose,
+        inplace     => $inplace,
+        nobackup    => $nobackup,
+    );
+} else {
+    # always filter STDIN - we don't know how large or how slow it will be
+    open(my $input, '-') or die "can't open STDIN: $!";
+    Pod::Tidy::tidy_filehandle($input);
+}
+1;
+
+__END__
