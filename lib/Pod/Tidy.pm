@@ -12,6 +12,7 @@ $VERSION = '0.01';
 
 use Fcntl ':flock';
 use IO::String;
+use File::Copy qw( cp );
 use Pod::Find qw( contains_pod );
 use Pod::Simple;
 use Pod::Wrap::Pretty;
@@ -28,7 +29,7 @@ sub tidy_files
     process_pod_queue(
         inplace     => $p{inplace},
         nobackup    => $p{nobackup},
-        queue       => $p{queue},
+        queue       => $queue,
     ); 
 }
 
@@ -57,13 +58,13 @@ sub process_pod_queue
         # all files in queue should have already been checked to be readable
         open(my $src, '+<', $filename) or warn "can't open file: $!" && next;
 
-        # wait for an execlusive lock incase we want to modify the file
+        # wait for an exclusive lock in case we want to modify the file
         flock($src, LOCK_EX);
 
         # slurp the file into memory to avoid making a tmp file
         my $doc = do { local $/; <$src> };
 
-        # create a filehandle
+        # wrap the doc with a file handle
         my $input = IO::String->new($doc);
 
         # modify in place?
@@ -75,16 +76,22 @@ sub process_pod_queue
             next if ${$input->string_ref} eq ${$output->string_ref};
 
             # backup existing file
-            unless ($nobackup) { }
+            unless ($nobackup) {
+                backup_file($filename);
+            }
 
             # overwrite the original file
             truncate($src, 0);
             seek($src, 0, 0);
             print $src ${$output->string_ref};
         } else {
+            # send the output to STDOUT
             $wrapper->parse_from_filehandle($input);
         }
 
+        # count of files actually processed
+        # note that this number will be different for 'inplace' as unmodified
+        # files will not be counted
         $processed++;
     }
 
@@ -138,16 +145,19 @@ sub build_pod_queue
 
             # is recursion allowed?
             if ($recursive) {
+                # It may be better to use File::Find or Pod::Find here.
+                # Initialiy I was using Pod::Find but I wanted explict control
+                # over warnings.
                 opendir(my $dir, $item) or warn "can't open dir: $!" && next;
                 my @files = grep !/^\.{1,2}$/, readdir($dir);
                 @files = map { "$item/$_" } @files;
-                push(@queue, @{ build_pod_queue(
-                    files       => \@files,
-                    verbose     => $verbose,
-                    recursive   => $recursive
-                ) });
-#                my %pods = pod_find({ -verbose => $verbose, -inc => 0 }, $item);
-#                push @queue, keys %pods;
+                push(@queue, @{
+                    build_pod_queue(
+                        files       => \@files,
+                        verbose     => $verbose,
+                        recursive   => $recursive
+                    ),
+                });
             } else {
                 # ignoring $item, recursion not enabled
             warn "$0: omitting direcotry \`$item\': recursion is not enabled\n" 
@@ -174,6 +184,13 @@ sub valid_pod_syntax
     $parser->parse_file($file);
 
     return $parser->any_errata_seen ? undef : 1;
+}
+
+sub backup_file
+{
+    my $filename = shift;
+
+    return cp($filename, "$filename~");
 }
 
 1;
