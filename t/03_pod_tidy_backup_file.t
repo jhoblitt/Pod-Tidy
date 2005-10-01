@@ -7,6 +7,8 @@
 use strict;
 use warnings FATAL => qw( all );
 
+use lib qw( ./lib );
+
 use Test::More 'no_plan';
 
 use Pod::Tidy;
