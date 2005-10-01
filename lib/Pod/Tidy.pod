@@ -103,8 +103,8 @@ Returns a count of processed files or C<undef> if no files could be processed.
 =item * tidy_filehandle($input)
 
 Accepts an open filehandle.  Data from the filehandle is processed as it is
-read so this function can be used to filter large amounts of data.  Because of
-this behavior the input can not be checked in advance to verify a) That it's
+read so this subroutine can be used to filter large amounts of data.  Because
+of this behavior the input can not be checked in advance to verify a) That it's
 actually Pod and b) that the Pod document uses only valid Pod syntax.  Output
 is set to C<STDOUT>.  Returns nothing.
 
@@ -112,7 +112,7 @@ is set to C<STDOUT>.  Returns nothing.
 
 =head2 Internal Subroutines
 
-These functions are not exportable.
+These subroutines are not exportable.
 
 =over 4
 
@@ -135,7 +135,7 @@ shouldn't be a major performance issue with an modern OS's VM subsystem but it
 still leaves much to be desired.  When doing C<inplace> file reformatting a
 complete copy of the original file and the updated file and held in memory for
 comparison.  Thus you are limited to reformatting Pod documents C< < (
-avaiable_system_memeory / 2 )>.
+available_system_memory / 2 )>.
 
 =head1 CREDITS
 
