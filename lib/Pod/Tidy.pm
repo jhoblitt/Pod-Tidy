@@ -179,13 +179,15 @@ sub build_pod_queue
 
 sub valid_pod_syntax
 {
-    my ($file, $verbose) = @_;
+    my ($filename, $verbose) = @_;
+
+    return undef unless $filename and -e $filename;
 
     # method for checking syntax stolen from Test::Pod
     my $parser = Pod::Simple->new;
 
     $parser->complain_stderr(1) if $verbose;
-    $parser->parse_file($file);
+    $parser->parse_file($filename);
 
     return $parser->any_errata_seen ? undef : 1;
 }
