@@ -17,6 +17,10 @@ use Pod::Find qw( contains_pod );
 use Pod::Simple;
 use Pod::Wrap::Pretty;
 
+use vars qw( $BACKUP_POSTFIX);
+# used by backup_file
+$BACKUP_POSTFIX = "~";
+
 sub tidy_files
 {
     my %p = @_;
@@ -190,7 +194,7 @@ sub backup_file
 {
     my $filename = shift;
 
-    return cp($filename, "$filename~");
+    return cp($filename, $filename . $BACKUP_POSTFIX);
 }
 
 1;
