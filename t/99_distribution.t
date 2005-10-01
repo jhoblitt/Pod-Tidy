@@ -5,7 +5,7 @@
 # $Id$
 
 use strict;
-use warnings;
+use warnings FATAL => qw( all );
 
 use Test::More;
 
