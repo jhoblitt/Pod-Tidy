@@ -30,7 +30,7 @@ although the API should be general enough that it can be used directly.
 This module accepts no arguments to it's C<import> method and exports no
 I<symbols>.
 
-=head3 Exportable Subroutines
+=head2 Exportable Subroutines
 
 =over 4
 
@@ -107,6 +107,22 @@ read so this function can be used to filter large amounts of data.  Because of
 this behavior the input can not be checked in advance to verify a) That it's
 actually Pod and b) that the Pod document uses only valid Pod syntax.  Output
 is set to C<STDOUT>.  Returns nothing.
+
+=back
+
+=head2 Internal Subroutines
+
+These functions are not exportable.
+
+=over 4
+
+=item * backup_file
+
+=item * build_pod_queue
+
+=item * process_pod_queue
+
+=item * valid_pod_syntax
 
 =back
 
