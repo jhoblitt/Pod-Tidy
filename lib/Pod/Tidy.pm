@@ -181,7 +181,7 @@ sub valid_pod_syntax
 {
     my ($filename, $verbose) = @_;
 
-    return undef unless $filename and -e $filename;
+    return undef unless defined $filename and -e $filename;
 
     # method for checking syntax stolen from Test::Pod
     my $parser = Pod::Simple->new;
@@ -196,7 +196,7 @@ sub backup_file
 {
     my $filename = shift;
 
-    return undef unless $filename and -e $filename;
+    return undef unless defined $filename and -e $filename;
     return cp($filename, $filename . $BACKUP_POSTFIX);
 }
 
