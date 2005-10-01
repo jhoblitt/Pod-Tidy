@@ -194,7 +194,7 @@ sub backup_file
 {
     my $filename = shift;
 
-    return undef unless $filename;
+    return undef unless $filename and -e $filename;
     return cp($filename, $filename . $BACKUP_POSTFIX);
 }
 
