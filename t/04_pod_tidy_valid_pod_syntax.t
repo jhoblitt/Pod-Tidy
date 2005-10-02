@@ -15,6 +15,8 @@ use Pod::Tidy;
 use File::Temp qw( tempdir );
 
 my $valid_pod =<<END;
+=pod
+
 =head1 foo
 
 bar baz.
