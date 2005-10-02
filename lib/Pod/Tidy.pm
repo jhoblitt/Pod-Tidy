@@ -41,8 +41,12 @@ sub tidy_filehandle
 {
     my $input = shift;
 
+    return undef unless $input;
+
     my $wrapper = Pod::Wrap::Pretty->new;
     $wrapper->parse_from_filehandle($input);
+
+    return 1;
 }
 
 sub process_pod_queue 
