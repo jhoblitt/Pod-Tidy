@@ -16,3 +16,5 @@ t/03_pod_tidy_backup_file.t
 t/04_pod_tidy_valid_pod_syntax.t
 t/05_pod_tidy_build_pod_queue.t
 t/06_pod_tidy_process_pod_queue.t
+t/07_pod_tidy_tidy_filehandle.t
+t/08_pod_tidy_tidy_files.t
