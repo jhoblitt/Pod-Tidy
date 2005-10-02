@@ -30,7 +30,10 @@ sub tidy_files
         recursive   => $p{recursive},
         verbose     => $p{verbose},
     );
-    process_pod_queue(
+
+    return undef unless $queue;
+
+    return process_pod_queue(
         inplace     => $p{inplace},
         nobackup    => $p{nobackup},
         queue       => $queue,
