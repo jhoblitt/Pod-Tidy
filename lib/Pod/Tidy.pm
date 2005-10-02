@@ -54,6 +54,8 @@ sub process_pod_queue
     my $queue       = $p{queue};
     my $nobackup    = $p{nobackup};
 
+    return undef unless defined $queue;
+
     # count the number of files processed
     my $processed = 0;
     my $wrapper = Pod::Wrap::Pretty->new;
