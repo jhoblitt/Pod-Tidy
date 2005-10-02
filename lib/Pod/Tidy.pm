@@ -174,7 +174,7 @@ sub build_pod_queue
         warn "$0: \`$item\': no such file or directory\n" if $verbose;
     }
 
-    return \@queue;
+    return scalar @queue ? \@queue : undef;
 }
 
 sub valid_pod_syntax

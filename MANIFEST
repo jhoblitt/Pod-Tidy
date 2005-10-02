@@ -13,4 +13,5 @@ t/01_load.t
 t/02_pod_wrap_pretty.t
 t/03_pod_tidy_backup_file.t
 t/04_pod_tidy_valid_pod_syntax.t
+t/05_pod_tidy_build_pod_queue.t
 t/99_distribution.t
