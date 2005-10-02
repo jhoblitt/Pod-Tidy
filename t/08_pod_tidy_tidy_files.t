@@ -7,9 +7,9 @@
 use strict;
 use warnings FATAL => qw( all );
 
-use Test::More 'no_plan';
-
 use lib qw( ./lib );
+
+use Test::More tests => 8;
 
 use IO::String;
 use Pod::Tidy;
@@ -89,7 +89,6 @@ my $invalid_pod =<<END;
 
 =back
 END
-
 
 {
     my $dir = tempdir( CLEANUP => 1 );
