@@ -1,5 +1,8 @@
 TODO list for Perl module Pod::Tidy
 
-- Nothing yet
-
+- use Params::Validate
+- test verbose option
+- test functions for output to stdout/stderr
+- better testing for podtidy options
+- add a unified diff output option (Text::Diff)
 
