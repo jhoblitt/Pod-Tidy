@@ -18,3 +18,4 @@ t/05_pod_tidy_build_pod_queue.t
 t/06_pod_tidy_process_pod_queue.t
 t/07_pod_tidy_tidy_filehandle.t
 t/08_pod_tidy_tidy_files.t
+t/09_podtidy.t
