@@ -7,43 +7,21 @@
 use strict;
 use warnings FATAL => qw( all );
 
-use lib qw( ./lib );
+use lib qw( ./lib ./t );
 
 use Test::More tests => 5;
 
-use Pod::Tidy;
 use File::Temp qw( tempdir );
-
-my $valid_pod =<<END;
-=pod
-
-=head1 foo
-
-bar baz.
-
-=cut
-END
-
-my $invalid_pod =<<END;
-=pod
-
-=end
-
-=begin
-
-=bogustag
-
-=back
-END
-
+use Pod::Tidy;
+use Test::Pod::Tidy;
 
 {
     my $dir = tempdir( CLEANUP => 1 );
     my $tmp_valid   = File::Temp->new( DIR => $dir );
     my $tmp_invalid = File::Temp->new( DIR => $dir );
 
-    print $tmp_valid $valid_pod;
-    print $tmp_invalid $invalid_pod;
+    print $tmp_valid $VALID_POD;
+    print $tmp_invalid $INVALID_POD;
     $tmp_valid->flush;
     $tmp_invalid->flush;
 
@@ -59,8 +37,8 @@ END
     my $tmp_valid   = File::Temp->new( DIR => $dir );
     my $tmp_invalid = File::Temp->new( DIR => $dir );
 
-    print $tmp_valid $valid_pod;
-    print $tmp_invalid $invalid_pod;
+    print $tmp_valid $VALID_POD;
+    print $tmp_invalid $INVALID_POD;
     $tmp_valid->flush;
     $tmp_invalid->flush;
 
@@ -77,8 +55,8 @@ END
     my $tmp_valid   = File::Temp->new( DIR => $dir );
     my $tmp_invalid = File::Temp->new( DIR => $dir );
 
-    print $tmp_valid $valid_pod;
-    print $tmp_invalid $invalid_pod;
+    print $tmp_valid $VALID_POD;
+    print $tmp_invalid $INVALID_POD;
     $tmp_valid->flush;
     $tmp_invalid->flush;
 
