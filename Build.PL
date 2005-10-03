@@ -16,6 +16,7 @@ Module::Build->new(
         'Text::Wrap'    => '0',
     },
     build_requires      => {
+        'Test::Cmd'     => 0,
         'Test::Pod'     => '0.95',
     },
     script_files        => [qw(
