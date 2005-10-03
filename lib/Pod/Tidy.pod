@@ -137,6 +137,21 @@ complete copy of the original file and the updated file and held in memory for
 comparison.  Thus you are limited to reformatting Pod documents C< < (
 available_system_memory / 2 )>.
 
+=head1 BUGS
+
+Due to a bug in the version of C<Pod::Find::contains_pod> bundled with
+Pod::Parser 1.33, Pod containing files will not be detetect if the only
+C<=[foo]N> directive is on the first line of the file.  For example:
+
+    =head1 foo
+    
+    foobarbaz
+
+    =cut
+
+Would not be detected unless there was a newline before C<=head1 foo>.  See
+CPAN bug #14871 for a patch to correct C<Pod::Find>.
+
 =head1 CREDITS
 
 Just me, myself, and I.
