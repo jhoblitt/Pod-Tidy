@@ -1,5 +1,8 @@
 Revision history for Perl module Pod::Tidy
 
+0.02
+    - add META.yml
+
 0.01 Sat Sep 17 02:10:08 2005
     - original version; created by ExtUtils::ModuleMaker 0.39
 
