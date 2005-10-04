@@ -11,11 +11,12 @@ use Pod::Tidy;
 use Getopt::Long qw( GetOptions :config auto_version auto_help gnu_getopt );
 use Pod::Usage qw( pod2usage );
 
-my ($inplace, $nobackup, $recursive, $verbose);
+my ($inplace, $ignore, $nobackup, $recursive, $verbose);
 # for some reason the single letter abv.s must be explicitly declared when
 # bundling is enabled
 GetOptions(
     'inplace|i'     => \$inplace,
+    'Ignore|I=s@'   => \$ignore,
     'nobackup|n'    => \$nobackup,
     'recursive|r'   => \$recursive,
     'verbose|v'     => \$verbose,
@@ -38,6 +39,7 @@ if (@ARGV) {
         recursive   => $recursive,
         verbose     => $verbose,
         inplace     => $inplace,
+        ignore      => [map { qr/$_/ } @$ignore],
         nobackup    => $nobackup,
     );
 } else {
