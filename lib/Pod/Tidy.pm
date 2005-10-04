@@ -118,11 +118,20 @@ sub build_pod_queue
     # deref once
     my $verbose     = $p{verbose};
     my $recursive   = $p{recursive};
+    my $ignore      = $p{ignore};
 
     my @queue;
-    foreach my $item (@{ $p{files} }) {
+        PERITEM: foreach my $item (@{ $p{files} }) {
         # FIXME do we need to add symlink handling options?
 
+        foreach my $pattern (@{ $ignore }) {
+            if ($item =~ $pattern) {
+                warn "$0: omitting file \`$item\': mattes ignore pattern\n"
+                    if $verbose;
+                next PERITEM;
+            }
+        }
+        
         # is it a file?
         if (-f $item) {
             # only check if we can read the file, we don't need to be able to
@@ -168,7 +177,8 @@ sub build_pod_queue
                     build_pod_queue(
                         files       => \@files,
                         verbose     => $verbose,
-                        recursive   => $recursive
+                        recursive   => $recursive,
+                        ignore      => $ignore,
                     ),
                 });
             } else {

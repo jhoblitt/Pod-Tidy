@@ -9,7 +9,7 @@ use warnings FATAL => qw( all );
 
 use lib qw( ./lib ./t );
 
-use Test::More tests => 5;
+use Test::More tests => 7;
 
 use File::Temp qw( tempdir );
 use Pod::Tidy;
@@ -66,6 +66,53 @@ use Test::Pod::Tidy;
     );
 
     is_deeply($queue, [$tmp_valid->filename], "dir with recursive enabled");
+}
+
+{
+    my $dir = tempdir( CLEANUP => 1 );
+    my $tmp_valid   = File::Temp->new( DIR => $dir );
+    my $tmp_valid2  = File::Temp->new( DIR => $dir );
+    my $tmp_invalid = File::Temp->new( DIR => $dir );
+
+    print $tmp_valid $VALID_POD;
+    print $tmp_valid2 $VALID_POD;
+    print $tmp_invalid $INVALID_POD;
+    $tmp_valid->flush;
+    $tmp_valid2->flush;
+    $tmp_invalid->flush;
+
+    my $queue = Pod::Tidy::build_pod_queue(
+        files       => [$dir],
+        recursive   => 1,
+        ignore      => [qr/$tmp_valid/],
+    );
+
+    is_deeply($queue, [$tmp_valid2->filename], "ignore 1 pattern");
+}
+
+{
+    my $dir = tempdir( CLEANUP => 1 );
+    my $tmp_valid   = File::Temp->new( DIR => $dir );
+    my $tmp_valid2  = File::Temp->new( DIR => $dir );
+    my $tmp_valid3  = File::Temp->new( DIR => $dir );
+    my $tmp_invalid = File::Temp->new( DIR => $dir );
+
+    print $tmp_valid $VALID_POD;
+    print $tmp_valid2 $VALID_POD;
+    print $tmp_valid3 $VALID_POD;
+    print $tmp_invalid $INVALID_POD;
+    $tmp_valid->flush;
+    $tmp_valid2->flush;
+    $tmp_valid3->flush;
+    $tmp_invalid->flush;
+
+    my $queue = Pod::Tidy::build_pod_queue(
+        files       => [$dir],
+        recursive   => 1,
+        ignore      => [qr/$tmp_valid/, qr/$tmp_valid2/],
+    );
+
+    is_deeply($queue, [$tmp_valid3->filename], "ignore 2 pattern");
 }
 
 {
