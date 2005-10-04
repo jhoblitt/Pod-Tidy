@@ -27,6 +27,7 @@ sub tidy_files
 
     my $queue = build_pod_queue(
         files       => $p{files},
+        ignore      => $p{ignore},
         recursive   => $p{recursive},
         verbose     => $p{verbose},
     );
