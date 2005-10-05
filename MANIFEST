@@ -3,6 +3,7 @@ Changes
 LICENSE
 MANIFEST
 META.yml
+Makefile.PL
 README
 Todo
 lib/Pod/Tidy.pm
