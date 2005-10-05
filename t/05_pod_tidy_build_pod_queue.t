@@ -9,7 +9,7 @@ use warnings FATAL => qw( all );
 
 use lib qw( ./lib ./t );
 
-use Test::More tests => 7;
+use Test::More tests => 8;
 
 use File::Temp qw( tempdir );
 use Pod::Tidy;
@@ -113,6 +113,20 @@ use Test::Pod::Tidy;
     );
 
     is_deeply($queue, [$tmp_valid3->filename], "ignore 2 pattern");
+}
+
+# empty nested dirs
+{
+    my $dir         = tempdir( CLEANUP => 1 );
+    my $dir2        = tempdir( DIR => $dir, CLEANUP => 1 );
+    my $dir3        = tempdir( DIR => $dir2, CLEANUP => 1 );
+
+    my $queue = Pod::Tidy::build_pod_queue(
+        files       => [$dir],
+        recursive   => 1,
+    );
+
+    is($queue, undef, "handles empty dirs");
 }
 
 {

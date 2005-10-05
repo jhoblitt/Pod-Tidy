@@ -174,14 +174,13 @@ sub build_pod_queue
                 opendir(my $dir, $item) or warn "can't open dir: $!" && next;
                 my @files = grep !/^\.{1,2}$/, readdir($dir);
                 @files = map { "$item/$_" } @files;
-                push(@queue, @{
-                    build_pod_queue(
-                        files       => \@files,
-                        verbose     => $verbose,
-                        recursive   => $recursive,
-                        ignore      => $ignore,
-                    ),
-                });
+                my $pod_list = build_pod_queue(
+                    files       => \@files,
+                    verbose     => $verbose,
+                    recursive   => $recursive,
+                    ignore      => $ignore,
+                );
+                push(@queue, @{ $pod_list }) if $pod_list;
             } else {
                 # ignoring $item, recursion not enabled
             warn "$0: omitting direcotry \`$item\': recursion is not enabled\n" 
