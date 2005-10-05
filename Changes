@@ -1,5 +1,9 @@
 Revision history for Perl module Pod::Tidy
 
+0.03 Tue Oct  4 14:44:18 HST 2005
+    - document podtidy's --Ignore option
+    - Pod::Tidy & podtidy VERSION to '0.03'
+
 0.02 Tue Oct  4 14:20:40 HST 2005
     - add META.yml
     - add ignore param to Pod::Tidy::build_pod_queue()
