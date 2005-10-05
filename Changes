@@ -1,7 +1,7 @@
 Revision history for Perl module Pod::Tidy
 
 0.06
-    - fix Pod::Wrap::Pretty's handling of tailing whitespace handling so
+    - fix Pod::Wrap::Pretty's handling of trailing whitespace handling so
       sending the output of podtidy back through podtidy doesn't cause a
       non-deterministic result.
     - Pod::Wrap::Pretty VERSION to '0.02'
