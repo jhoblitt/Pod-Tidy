@@ -1,5 +1,10 @@
 Revision history for Perl module Pod::Tidy
 
+0.04
+    - add Makefile.PL
+    - work around Module::Build stripping the execute bit from scripts/podtidy
+      when making a tarball in t/09_podtidy.t
+
 0.03 Tue Oct  4 14:44:18 HST 2005
     - document podtidy's --Ignore option
     - Pod::Tidy & podtidy VERSION to '0.03'
