@@ -60,7 +60,8 @@ podtidy - a reformatting Pod Processor
 
 =head1 SYNOPSIS
 
-    podtidy [--inplace] [--nobackup] [--recursive] [--verbose] [<filelist>]
+    podtidy [--inplace] [--nobackup] [--recursive] [--verbose]
+            {[--Ignore <pattern>]} [<filelist>]
     podtidy [--help|-h|-?]
 
 =head1 DESCRIPTION
@@ -79,14 +80,24 @@ reformatted version.  It should be noted that only files that are actually
 having there format changed will to written to.  When C<--inplace> is combined
 with C<--nobackup> the backup of the original file is omitted.  If
 <--recursive> is specified then any directory names in <filelist> will be
-recursively expanded.  Lastly, the C<--verbose> flag enables additional
-warnings and error messages.
+recursively expanded.  File and directories may be explicitly omitted from
+processing by using the C<--Ignore> option and specifying a Perl5 compatible
+regex.  Multiple C<--Ignore> options may be specified.  Lastly, the
+C<--verbose> flag enables additional warnings and error messages.
 
 =head1 OPTIONS
 
 =over 4
 
-=item * --inplace
+=item * --Ignore|I <pattern>
+
+Causes files and directories matching C< <pattern> > to be omitted from
+processing. Where C< <patter> > is a Perl5 compatible regex.  Multiple
+C<--Ignore> options may be specified.
+
+This flag is optional.
+
+=item * --inplace|i
 
 Make a backup of the original file and overwrite it with a reformatted version.
 The backup file will have the same name as the original file with a C<~>
