@@ -8,7 +8,7 @@ use strict;
 use warnings FATAL => qw( all );
 
 use vars qw( $VERSION );
-$VERSION = '0.04';
+$VERSION = '0.05';
 
 use Fcntl ':flock';
 use IO::String;
