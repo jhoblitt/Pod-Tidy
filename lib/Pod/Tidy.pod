@@ -154,7 +154,7 @@ available_system_memory / 2 )>.
 =head1 BUGS
 
 Due to a bug in the version of C<Pod::Find::contains_pod> bundled with
-L<Pod::Parser> 1.33, Pod containing files will not be detetect if the only
+L<Pod::Parser> 1.33, Pod containing files will not be detect if the only
 C<=[foo]N> directive is on the first line of the file.  For example:
 
     =head1 foo
