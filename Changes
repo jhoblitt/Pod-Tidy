@@ -4,6 +4,7 @@ Revision history for Perl module Pod::Tidy
     - fix Pod::Wrap::Pretty's handling of tailing whitespace handling so
       sending the output of podtidy back through podtidy doesn't cause a
       non-deterministic result.
+    - Pod::Wrap::Pretty VERSION to '0.02'
 
 0.05 Tue Oct  4 15:22:36 HST 2005
     - remove build_req on Test::Pod
