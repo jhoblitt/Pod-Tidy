@@ -11,6 +11,8 @@ use vars qw( $VERSION );
 $VERSION = '0.05';
 
 use Fcntl ':flock';
+use File::Basename qw( basename dirname );
+use File::Spec;
 use IO::String;
 use File::Copy qw( cp );
 use Pod::Find qw( contains_pod );
@@ -124,11 +126,18 @@ sub build_pod_queue
     my @queue;
         PERITEM: foreach my $item (@{ $p{files} }) {
         # FIXME do we need to add symlink handling options?
+        $item = File::Spec->canonpath($item);
 
         foreach my $pattern (@{ $ignore }) {
-            if ($item =~ $pattern) {
-                warn "$0: omitting file \`$item\': mattes ignore pattern\n"
-                    if $verbose;
+            # try the absolute path, then the relative path, then the 'base'
+            # path
+            if (
+                    (File::Spec->rel2abs($item) =~ $pattern)
+                    or                  ($item  =~ $pattern)
+                    or             (base($item) =~ $pattern)
+               ) {
+                warn "$0: omitting file \`$item\': matches ignore pattern: "
+                    . "$pattern\n" if $verbose;
                 next PERITEM;
             }
         }
@@ -217,6 +226,17 @@ sub backup_file
 
     return undef unless defined $filename and -e $filename;
     return cp($filename, $filename . $BACKUP_POSTFIX);
+}
+
+sub base
+{
+    my $path = shift;
+
+    if (my $base = basename($path)) {
+        return $base;
+    } else {
+        return basename(dirname($path));
+    }
 }
 
 1;
