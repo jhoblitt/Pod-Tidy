@@ -97,7 +97,7 @@ Where C<pattern> is C<glob(3)> compatible.  Each pattern is tried for a match
 against (in order) the absolute file path, the relative file path (canonical),
 and the basename.  In the case of directories, the "basename" is considered to
 be the right most path component.  For example, the "basename" of
-C</foo/bar/baz/> would be to be C<baz>. Multiple C<--Ignore> options may be
+C</foo/bar/baz/> would be C<baz>. Multiple C<--Ignore> options may be
 specified.
 
 This flag is optional.
