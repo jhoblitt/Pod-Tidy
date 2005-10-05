@@ -1,5 +1,8 @@
 Revision history for Perl module Pod::Tidy
 
+0.07
+    - fix speling, markup, & grammar in Pod::Tidy.pod
+
 0.06 Wed Oct  5 00:17:57 HST 2005
     - fix Pod::Wrap::Pretty's handling of trailing whitespace handling so
       sending the output of podtidy back through podtidy doesn't cause a
