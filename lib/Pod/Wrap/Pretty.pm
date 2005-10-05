@@ -7,7 +7,7 @@ package Pod::Wrap::Pretty;
 use strict;
 
 use vars qw( $VERSION );
-$VERSION = '0.01';
+$VERSION = '0.02';
 
 use base qw( Pod::Wrap );
 
@@ -28,6 +28,8 @@ sub textblock
     if ($text !~ /^=/mg) {
         # it is - remove all but the last newline so line the breaks are redone
         $text =~ s/\n(?!\Z)/ /g;
+        # trim whitespace from the end of the string
+        $text =~ s/\s*\z/\n/g;
     }
 
     $self->SUPER::textblock($text, @_);
