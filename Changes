@@ -1,10 +1,20 @@
 Revision history for Perl module Pod::Tidy
 
-0.06
+0.06 Wed Oct  5 00:17:57 HST 2005
     - fix Pod::Wrap::Pretty's handling of trailing whitespace handling so
       sending the output of podtidy back through podtidy doesn't cause a
       non-deterministic result.
     - Pod::Wrap::Pretty VERSION to '0.02'
+    - change Pod::Tidy::build_pod_queue() to 'canonicalize' all input file paths
+    - add Pod::Tidy::base()
+    - change Pod::Tidy::build_pod_queue()'s ignore pattern matching to try to
+      match on the absolute, relative, and 'base' file/dir paths
+    - document Pod::Tidy::tidy_files(ignore => ...)
+    - Pod::Tidy VERSION to '0.06'
+    - add Text::Glob req.
+    - switch podtidy from --Ignore regex patterns -> Text::Glob::glob_to_regex()
+    - update podtidy Ignore option documentation
+    - podtidy VERSION to '0.04'
 
 0.05 Tue Oct  4 15:22:36 HST 2005
     - remove build_req on Test::Pod
