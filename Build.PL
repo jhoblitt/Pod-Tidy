@@ -13,6 +13,7 @@ Module::Build->new(
         'Pod::Find'     => '0',
         'Pod::Simple'   => '0',
         'Pod::Wrap'     => '0',
+        'Text::Glob'    => '0.06',
         'Text::Wrap'    => '0',
     },
     build_requires      => {
