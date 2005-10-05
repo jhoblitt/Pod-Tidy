@@ -14,7 +14,7 @@
 =head1 DESCRIPTION
 
 This is a L<Pod::Wrap> subclass, which is in turn a L<Pod::Parser> subclass.
-Please see the Pod of those modules for further API documentation.
+Please see the Pods of those modules for further API documentation.
 
 This module performs the exact same functionality as L<Pod::Wrap> I<except>
 that all pre-existing newlines are removed prior to line breaking and trailing
