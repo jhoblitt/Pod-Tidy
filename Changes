@@ -2,7 +2,10 @@ Revision history for Perl module Pod::Tidy
 
 0.02
     - add META.yml
-    - add ignore param to build_pod_queue()
+    - add ignore param to Pod::Tidy::build_pod_queue()
+    - add Ignore|I option to podtidy
+    - Todo update
+    - minor Pod::Tidy doc update
 
 0.01 Sat Sep 17 02:10:08 2005
     - original version; created by ExtUtils::ModuleMaker 0.39
