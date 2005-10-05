@@ -7,6 +7,7 @@ use vars qw( $VERSION );
 $VERSION = '0.03';
 
 use Pod::Tidy;
+use Text::Glob qw( glob_to_regex );
 
 use Getopt::Long qw( GetOptions :config auto_version auto_help gnu_getopt );
 use Pod::Usage qw( pod2usage );
@@ -23,8 +24,8 @@ GetOptions(
 ) or pod2usage( 2 );
 
 unless (@ARGV) {
-    pod2usage( -msg => "Options: --inplace --nobackup --recursive require <filelist>", -exitval => 2 )
-        if $inplace or $nobackup or $recursive;
+    pod2usage( -msg => "Options: --Ignore --inplace --nobackup --recursive require <filelist>", -exitval => 2 )
+        if $ignore or $inplace or $nobackup or $recursive;
 }
 
 if ($nobackup) {
@@ -39,7 +40,7 @@ if (@ARGV) {
         recursive   => $recursive,
         verbose     => $verbose,
         inplace     => $inplace,
-        ignore      => [map { qr/$_/ } @$ignore],
+        ignore      => [map { glob_to_regex($_) } @$ignore],
         nobackup    => $nobackup,
     );
 } else {
@@ -91,9 +92,13 @@ C<--verbose> flag enables additional warnings and error messages.
 
 =item * --Ignore|I <pattern>
 
-Causes files and directories matching C< <pattern> > to be omitted from
-processing. Where C< <patter> > is a Perl5 compatible regex.  Multiple
-C<--Ignore> options may be specified.
+Causes files and directories matching C<pattern> to be omitted from processing.
+Where C<pattern> is C<glob(3)> compatible.  Each pattern is tried for a match
+against (in order) the absolute file path, the relative file path (canonical),
+and the basename.  In the case of directories, the "basename" is considered to
+be the right most path component.  For example, the "basename" of
+C</foo/bar/baz/> would be to be C<baz>. Multiple C<--Ignore> options may be
+specified.
 
 This flag is optional.
 
