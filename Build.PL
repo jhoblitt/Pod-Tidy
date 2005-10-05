@@ -17,7 +17,9 @@ Module::Build->new(
     },
     build_requires      => {
         'Test::Cmd'     => 0,
-        'Test::Pod'     => '0.95',
+    },
+    recommends          => {
+        'Test::Distribution' => '1.22',
     },
     script_files        => [qw(
         scripts/podtidy
