@@ -198,6 +198,6 @@ this module, or in L<perlartistic> and L<perlgpl> Pods as supplied with Perl
 
 =head1 SEE ALSO
 
-L<Pod::Tidy>, L<Pod::Wrap::Pretty>, L<Pod::Wrap>, L<Perl::Tidy>
+L<Pod::Tidy>, L<Pod::Wrap::Pretty>, L<podwrap>, L<Pod::Wrap>, L<Perl::Tidy>
 
 =cut
