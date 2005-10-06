@@ -4,6 +4,13 @@ Revision history for Perl module Pod::Tidy
     - fix speling, markup, & grammar in Pod::Tidy.pod
     - document that whitespace trailing paragraphs is now stripped in
       Pod::Wrap::Pretty.pod 
+    - podtidy documentation grammar fix
+    - Pod::Wrap::Pretty.pod grammar fix
+    - change Module::Build license spec to 'perl'
+    - change Pod::Tidy.pod BUGS -> GOTCHAS and add a Mangled verbatim blocks
+      section
+    - add DEVELOPER NOTES section to podtidy's documentation
+    - add podwrap to podtidy's SEE ALSO documentation
 
 0.06 Wed Oct  5 00:17:57 HST 2005
     - fix Pod::Wrap::Pretty's handling of trailing whitespace handling so
