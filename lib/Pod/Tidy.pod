@@ -142,6 +142,8 @@ These subroutines are not exportable.
 
 =head1 DEVELOPER NOTES
 
+=head2 Efficiency concerns
+
 The C<tidy_files()> subroutine does a number of highly inefficient things. Each
 file is opened and closed at least 3 different times as it is passed through a
 number of different modules to see if it meets the processing criteria.  This
