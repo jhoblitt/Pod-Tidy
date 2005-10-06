@@ -1,6 +1,6 @@
 Revision history for Perl module Pod::Tidy
 
-0.07
+0.07 Wed Oct  5 23:33:09 HST 2005
     - fix speling, markup, & grammar in Pod::Tidy.pod
     - document that whitespace trailing paragraphs is now stripped in
       Pod::Wrap::Pretty.pod 
@@ -11,6 +11,7 @@ Revision history for Perl module Pod::Tidy
       section
     - add DEVELOPER NOTES section to podtidy's documentation
     - update podtidy's and Pod::Tidy.pod's SEE ALSO documentation
+    - Pod::Tidy VERSION to '0.07'
 
 0.06 Wed Oct  5 00:17:57 HST 2005
     - fix Pod::Wrap::Pretty's handling of trailing whitespace handling so
