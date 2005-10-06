@@ -10,7 +10,7 @@ Revision history for Perl module Pod::Tidy
     - change Pod::Tidy.pod BUGS -> GOTCHAS and add a Mangled verbatim blocks
       section
     - add DEVELOPER NOTES section to podtidy's documentation
-    - add podwrap to podtidy's SEE ALSO documentation
+    - update podtidy's and Pod::Tidy.pod's SEE ALSO documentation
 
 0.06 Wed Oct  5 00:17:57 HST 2005
     - fix Pod::Wrap::Pretty's handling of trailing whitespace handling so
