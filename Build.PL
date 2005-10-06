@@ -5,7 +5,7 @@ Module::Build->new(
     module_name         => 'Pod::Tidy',
     dist_version_from   => 'lib/Pod/Tidy.pm',
     author              => 'Joshua Hoblitt <jhoblitt@cpan.org>',
-    license             => 'gpl',
+    license             => 'perl',
     create_makefile_pl  => 'passthrough',
     requires            => {
         'File::Copy'    => '0',
