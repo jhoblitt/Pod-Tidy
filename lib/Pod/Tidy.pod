@@ -239,7 +239,8 @@ Then the result from C<podtidy> would be nice and... well... I<tidy>.
 
 =head1 CREDITS
 
-Just me, myself, and I.
+Grant McLean C<grant@mclean.net.nz> caught a grammatical error in the
+documentation.
 
 =head1 SUPPORT
 
