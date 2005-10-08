@@ -80,7 +80,7 @@ backup of the input file to be made and the original file to overwritten with a
 reformatted version.  It should be noted that only files that are actually
 having there format changed will to written to.  When C<--inplace> is combined
 with C<--nobackup> the backup of the original file is omitted.  If
-<--recursive> is specified then any directory names in <filelist> will be
+C<--recursive> is specified then any directory names in <filelist> will be
 recursively expanded.  File and directories may be explicitly omitted from
 processing by using the C<--Ignore> option and specifying a Perl5 compatible
 regex.  Multiple C<--Ignore> options may be specified.  Lastly, the

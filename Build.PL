@@ -17,7 +17,7 @@ Module::Build->new(
         'Text::Wrap'    => '0',
     },
     build_requires      => {
-        'Test::Cmd'     => 0,
+        'Test::Cmd'     => '1.05',
     },
     recommends          => {
         'Test::Distribution' => '1.22',
