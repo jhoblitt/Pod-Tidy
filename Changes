@@ -9,7 +9,11 @@ Revision history for Perl module Pod::Tidy
     - fix Pod::Tidy::build_pod_queue() tests on Win32, patch from Michael
       Cartmell <Michael.Cartmell@thomson.com>
     - swap podtidy's and Pod::Tidy's '=head1 NAME' descriptions
+    - add Larry Denneau to CREDITS for reporting test failures caused by
+      Module::Build stripping the execute bit from scripts/podtidy.  This bug
+      was fixed in the 0.04 release.
 
+- fix test line endings
 - working with svn
 - ref gotchas from podtidy
 - swap titles

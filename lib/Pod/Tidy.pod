@@ -239,6 +239,9 @@ Then the result from C<podtidy> would be nice and... well... I<tidy>.
 
 =head1 CREDITS
 
+Larry Denneau C<denneau@ifa.hawaii.edu> reported test failures caused by
+L<Module::Build> stripping the execute bit from F<scripts/podtidy>.
+
 Grant McLean C<grant@mclean.net.nz> caught a grammatical error in the
 documentation.
 
