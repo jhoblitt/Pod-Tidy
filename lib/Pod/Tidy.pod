@@ -243,7 +243,7 @@ Grant McLean C<grant@mclean.net.nz> caught a grammatical error in the
 documentation.
 
 Michael Cartmell C<Michael.Cartmell@thomson.com> provided some grammatical
-corrections.
+corrections and a patch to fix C<Pod::Tidy::build_pod_queue()> tests on Win32.
 
 =head1 SUPPORT
 
