@@ -2,7 +2,7 @@
 
 =head1 NAME
 
-Pod::Tidy - reformat Pod documents without affecting other text or code
+Pod::Tidy - a reformatting Pod Processor
 
 =head1 SYNOPSIS
 
