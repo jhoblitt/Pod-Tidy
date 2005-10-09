@@ -8,19 +8,21 @@ Module::Build->new(
     license             => 'perl',
     create_makefile_pl  => 'passthrough',
     requires            => {
-        'File::Copy'    => '0',
-        'IO::String'    => '0',
-        'Pod::Find'     => '0',
-        'Pod::Simple'   => '0',
-        'Pod::Wrap'     => '0',
-        'Text::Glob'    => '0.06',
-        'Text::Wrap'    => '0',
+        'File::Copy'            => 0,
+        'IO::String'            => 0,
+        'Pod::Find'             => 0,
+        'Pod::Simple'           => 0,
+        'Pod::Wrap'             => 0,
+        'Text::Glob'            => '0.06',
+        'Text::Wrap'            => 0,
     },
     build_requires      => {
-        'Test::Cmd'     => '1.05',
+        'Encode'                => 0,
+        'Encode::Newlines'      => '0.03',
+        'Test::Cmd'             => '1.05',
     },
     recommends          => {
-        'Test::Distribution' => '1.22',
+        'Test::Distribution'    => '1.22',
     },
     script_files        => [qw(
         scripts/podtidy

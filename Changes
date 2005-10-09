@@ -14,10 +14,16 @@ Revision history for Perl module Pod::Tidy
       was fixed in the 0.04 release.
     - change podtidy's CREDITS to refer to Pod::Tidy's CREDITS
     - add GOTCHAS and Efficiency concerns to podtidy both referring to Pod::Tidy
+    - move $POD_WS_TAIL & $POD_WS_TRIMMED into Test::Pod::Tidy
+    - mangle newlines on all strings in Test::Pod::Tidy with Encode::Newlines
+      to fix tests on Win32, reported by Michael Cartmell
+      <Michael.Cartmell@thomson.com>
+
+
 
 - fix test line endings
+- fix CPANPLUS
 - working with svn
-- swap titles
 
 0.07 Wed Oct  5 23:33:09 HST 2005
     - fix speling, markup, & grammar in Pod::Tidy.pod
