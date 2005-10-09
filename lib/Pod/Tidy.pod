@@ -246,7 +246,8 @@ Grant McLean C<grant@mclean.net.nz> caught a grammatical error in the
 documentation.
 
 Michael Cartmell C<Michael.Cartmell@thomson.com> provided some grammatical
-corrections and a patch to fix C<Pod::Tidy::build_pod_queue()> tests on Win32.
+corrections and a patch to fix C<Pod::Tidy::build_pod_queue()> tests on Win32,
+and reporting test failures on Win32 caused by differing newline encodings.
 
 =head1 SUPPORT
 
