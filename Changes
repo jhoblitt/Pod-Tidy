@@ -18,10 +18,8 @@ Revision history for Perl module Pod::Tidy
     - mangle newlines on all strings in Test::Pod::Tidy with Encode::Newlines
       to fix tests on Win32, reported by Michael Cartmell
       <Michael.Cartmell@thomson.com>
+    - add build_requires dep on Encode & Encode::Newlines '0.03'
 
-
-
-- fix test line endings
 - fix CPANPLUS
 - working with svn
 
