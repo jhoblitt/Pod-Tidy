@@ -26,32 +26,6 @@ use Test::Pod::Tidy;
     is(${$output->string_ref}, $TIDY_POD, "test line-breaking");
 }
 
-my $POD_WS_TAIL =<<END;
-=head2 C source tests
-
-C source tests are usually located in F<t/src/*.t>.  A simple test looks like:  
-
-    c_output_is(<<'CODE', <<'OUTPUT', "name for test");
-    #include <stdio.h>
-    #include "parrot/parrot.h"
-    #include "parrot/embed.h"
-
-=cut
-END
-
-my $POD_WS_TRIMMED =<<END;
-=head2 C source tests
-
-C source tests are usually located in F<t/src/*.t>.  A simple test looks like:
-
-    c_output_is(<<'CODE', <<'OUTPUT', "name for test");
-    #include <stdio.h>
-    #include "parrot/parrot.h"
-    #include "parrot/embed.h"
-
-=cut
-END
-
 {
     my $input = IO::String->new($POD_WS_TAIL);
     my $output = IO::String->new;

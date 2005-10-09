@@ -4,13 +4,33 @@
 
 package Test::Pod::Tidy;
 
+use strict;
+
+use Encode;
+use Encode::Newlines;
+
 use base qw( Exporter );
 
-@EXPORT = qw( $MESSY_POD $TIDY_POD $VALID_POD $INVALID_POD );
+use vars qw(
+    @EXPORT
+    $MESSY_POD
+    $TIDY_POD
+    $VALID_POD
+    $INVALID_POD
+    $POD_WS_TAIL
+    $POD_WS_TRIMMED
+);
 
-use vars qw( $MESSY_POD $TIDY_POD $VALID_POD $INVALID_POD );
+@EXPORT = qw(
+    $MESSY_POD
+    $TIDY_POD
+    $VALID_POD
+    $INVALID_POD
+    $POD_WS_TAIL
+    $POD_WS_TRIMMED
+);
 
-$MESSY_POD =<<END;
+$MESSY_POD = encode( Native =><<END );
 =head1 NAME
 
 perlpodspec - Plain Old Documentation: format specification and notes
@@ -43,7 +63,7 @@ it implicates that such an option I<may> be provided.
 =cut
 END
 
-$TIDY_POD =<<END;
+$TIDY_POD = encode( Native =><<END );
 =head1 NAME
 
 perlpodspec - Plain Old Documentation: format specification and notes
@@ -73,7 +93,7 @@ such an option I<may> be provided.
 =cut
 END
 
-$VALID_POD =<<END;
+$VALID_POD = encode( Native =><<END );
 =pod
 
 =head1 foo
@@ -83,7 +103,7 @@ bar baz.
 =cut
 END
 
-$INVALID_POD =<<END;
+$INVALID_POD = encode( Native =><<END );
 =pod
 
 =end
@@ -93,6 +113,32 @@ $INVALID_POD =<<END;
 =bogustag
 
 =back
+END
+
+$POD_WS_TAIL = encode( Native =><<END );
+=head2 C source tests
+
+C source tests are usually located in F<t/src/*.t>.  A simple test looks like:  
+
+    c_output_is(<<'CODE', <<'OUTPUT', "name for test");
+    #include <stdio.h>
+    #include "parrot/parrot.h"
+    #include "parrot/embed.h"
+
+=cut
+END
+
+$POD_WS_TRIMMED = encode( Native =><<END );
+=head2 C source tests
+
+C source tests are usually located in F<t/src/*.t>.  A simple test looks like:
+
+    c_output_is(<<'CODE', <<'OUTPUT', "name for test");
+    #include <stdio.h>
+    #include "parrot/parrot.h"
+    #include "parrot/embed.h"
+
+=cut
 END
 
 1;
