@@ -4,10 +4,10 @@ Revision history for Perl module Pod::Tidy
     - fix a grammatical error in Pod::Tidy.pod, reported by Grant McLean
       <grant@mclean.net.nz>
     - fix some more grammatical errors in Pod::Tidy.pod, reported by Michael
-      Cartmell C<Michael.Cartmell@thomson.com>
+      Cartmell <Michael.Cartmell@thomson.com>
     - fix Pod format in podtidy
-    - fix Pod::Tidy::build_pod_queue() tests to work on Win32, patch from
-      Michael Cartmell C<Michael.Cartmell@thomson.com>
+    - fix Pod::Tidy::build_pod_queue() tests on Win32, patch from Michael
+      Cartmell <Michael.Cartmell@thomson.com>
 
 - working with svn
 - ref gotchas from podtiday
