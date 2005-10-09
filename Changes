@@ -13,10 +13,10 @@ Revision history for Perl module Pod::Tidy
       Module::Build stripping the execute bit from scripts/podtidy.  This bug
       was fixed in the 0.04 release.
     - change podtidy's CREDITS to refer to Pod::Tidy's CREDITS
+    - add GOTCHAS and Efficiency concerns to podtidy both referring to Pod::Tidy
 
 - fix test line endings
 - working with svn
-- ref gotchas from podtidy
 - swap titles
 
 0.07 Wed Oct  5 23:33:09 HST 2005
