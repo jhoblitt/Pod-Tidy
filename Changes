@@ -12,6 +12,7 @@ Revision history for Perl module Pod::Tidy
     - add Larry Denneau to CREDITS for reporting test failures caused by
       Module::Build stripping the execute bit from scripts/podtidy.  This bug
       was fixed in the 0.04 release.
+    - change podtidy's CREDITS to refer to Pod::Tidy's CREDITS
 
 - fix test line endings
 - working with svn
