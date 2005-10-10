@@ -1,6 +1,6 @@
 Revision history for Perl module Pod::Tidy
 
-0.08
+0.08 Mon Oct 10 00:02:39 HST 2005
     - fix a grammatical error in Pod::Tidy.pod, reported by Grant McLean
       <grant@mclean.net.nz>
     - fix some more grammatical errors in Pod::Tidy.pod, reported by Michael
@@ -22,6 +22,7 @@ Revision history for Perl module Pod::Tidy
     - add a Subversion Working Copies section to podtidy's DEVELOPER NOTES
     - fix CPANPLUS playing badly with Module::Build's build_requires, reported
       by <Michael.Cartmell@thomson.com>
+    - Pod::Tidy's VERSION to '0.08'
 
 0.07 Wed Oct  5 23:33:09 HST 2005
     - fix speling, markup, & grammar in Pod::Tidy.pod
