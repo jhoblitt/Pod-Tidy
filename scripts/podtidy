@@ -159,6 +159,22 @@ parts of a Pod document will be added in the future.  C<podwrap> is also
 missing a couple of other features that C<podtidy> provides for convenience,
 including:
 
+=head2 Subversion Working Copies
+
+When using C<podtidy> on a C<svn> I<Working Copy> it's important to remember
+that copies of all working files are stored under a directory named F<.svn>,
+including copies of Pod files.  If you use C<podtidy>'s C<--recursive> option
+I<Be Sure> that you don't accidentally process a F<.svn> directory. For
+example:
+
+    podtidy --recursive --inplace --nobackup --Ignore .svn docs
+
+Note that because any Pod files are already under revision control that it's
+completely safe to use the C<--nobackup> flag.  Also, the above example may be
+shorted to just:
+
+    podtidy -rin -I .svn docs
+
 =over 4
 
 =item * recursive file/directory processing
