@@ -15,8 +15,10 @@ Module::Build->new(
         'Pod::Wrap'             => 0,
         'Text::Glob'            => '0.06',
         'Text::Wrap'            => 0,
-    },
-    build_requires      => {
+# CPANPLUS, as of version 0.562, doesn't understand 'build_requires' and
+# ignores it.
+#    },
+#    build_requires      => {
         'Encode'                => 0,
         'Encode::Newlines'      => '0.03',
         'Test::Cmd'             => '1.05',

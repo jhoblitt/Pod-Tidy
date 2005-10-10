@@ -247,7 +247,8 @@ documentation.
 
 Michael Cartmell C<Michael.Cartmell@thomson.com> provided some grammatical
 corrections and a patch to fix C<Pod::Tidy::build_pod_queue()> tests on Win32,
-and reporting test failures on Win32 caused by differing newline encodings.
+reporting test failures on Win32 caused by differing newline encodings, and
+reporting L<CPANPLUS> playing badly with L<Module::Build>'s C<build_requires>.
 
 =head1 SUPPORT
 
