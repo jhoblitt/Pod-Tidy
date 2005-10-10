@@ -8,7 +8,7 @@ use strict;
 use warnings FATAL => qw( all );
 
 use vars qw( $VERSION );
-$VERSION = '0.07';
+$VERSION = '0.08';
 
 use Fcntl ':flock';
 use File::Basename qw( basename dirname );
