@@ -1,5 +1,8 @@
 Revision history for Perl module Pod::Tidy
 
+0.09
+    - Pod::Wrap::Prettys's NAME paragraph doesn't need to be verbatim block
+
 0.08 Mon Oct 10 00:02:39 HST 2005
     - fix a grammatical error in Pod::Tidy.pod, reported by Grant McLean
       <grant@mclean.net.nz>

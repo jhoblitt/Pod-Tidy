@@ -1,6 +1,6 @@
 =head1 NAME
 
-    Pod::Wrap::Pretty - reformat Pod to be nicely line wrapped
+Pod::Wrap::Pretty - reformat Pod to be nicely line wrapped
 
 =head1 SYNOPSIS
 
