@@ -1,6 +1,6 @@
 Revision history for Perl module Pod::Tidy
 
-0.09
+0.09 Sat Jan  7 01:02:51 HST 2006
     - Pod::Tidy VERSION to '0.09'
     - Pod::Tidy::Pretty VERSION to '0.03'
 
