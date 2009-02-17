@@ -24,9 +24,6 @@ GetOptions(
     'columns|c=i'   => \$columns,
 ) or pod2usage( 2 );
 
-$columns = 76 # use Text::Wrap's default
-  unless $columns;
-
 unless (@ARGV) {
     pod2usage( -msg => "Options: --Ignore --inplace --nobackup --recursive require <filelist>", -exitval => 2 )
         if $ignore or $inplace or $nobackup or $recursive;

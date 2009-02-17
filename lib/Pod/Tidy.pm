@@ -19,7 +19,10 @@ use Pod::Find qw( contains_pod );
 use Pod::Simple;
 use Pod::Wrap::Pretty;
 use Text::Wrap qw($columns);
-$columns = 76; # use Text::Wrap's default
+
+# Text::Wrap's default is 76, we are using 80 to maintain compatability with
+# Pod::Tidy <= 0.09
+$columns = 80;
 
 use vars qw( $BACKUP_POSTFIX);
 # used by backup_file
