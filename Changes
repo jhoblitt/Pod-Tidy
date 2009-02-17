@@ -1,5 +1,9 @@
 Revision history for Perl module Pod::Tidy
 
+0.10 Tue Feb 17 09:36:43 HST 2009
+    - Add support to Pod::Tidy and the podtidy util for setting the width of
+      the output columns
+
 0.09 Sat Jan  7 01:02:51 HST 2006
     - Pod::Tidy VERSION to '0.09'
     - Pod::Tidy::Pretty VERSION to '0.03'
