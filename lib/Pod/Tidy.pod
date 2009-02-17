@@ -15,6 +15,7 @@ Pod::Tidy - a reformatting Pod Processor
         verbose     => $verbose,
         inplace     => $inplace,
         nobackup    => $nobackup,
+        columns     => $columns,
     );
 
     Pod::Tidy::tidy_filehandle($input);
@@ -46,6 +47,7 @@ Accepts a mandatory hash.
         verbose     => $verbose,
         inplace     => $inplace,
         nobackup    => $nobackup,
+        columns     => $columns,
     );
 
 =over 4
@@ -91,6 +93,13 @@ This key is optional.
 
 Accepts C<undef>, C<0>, or C<1>.  If set to C<1> files being reformatted in
 place will not be backed up.  Defaults to C<undef>.
+
+This key is optional.
+
+=item * columns
+
+Accepts any number. Sets the line width of the reformatted pod. 
+Defaults to C<76> (L<Text::Wrap>'s default).
 
 This key is optional.
 
@@ -249,6 +258,9 @@ Michael Cartmell C<Michael.Cartmell@thomson.com> provided some grammatical
 corrections and a patch to fix C<Pod::Tidy::build_pod_queue()> tests on Win32,
 reporting test failures on Win32 caused by differing newline encodings, and
 reporting L<CPANPLUS> playing badly with L<Module::Build>'s C<build_requires>.
+
+Hanno Hecker <vetinari@ankh-morp.org> provided a patch to allow the column
+width to specified in both the L<Pod::Tidy> library and C<podtidy> utility.
 
 =head1 SUPPORT
 

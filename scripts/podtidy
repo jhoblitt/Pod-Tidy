@@ -12,7 +12,7 @@ use Text::Glob qw( glob_to_regex );
 use Getopt::Long qw( GetOptions :config auto_version auto_help gnu_getopt );
 use Pod::Usage qw( pod2usage );
 
-my ($inplace, $ignore, $nobackup, $recursive, $verbose);
+my ($inplace, $ignore, $nobackup, $recursive, $verbose, $columns);
 # for some reason the single letter abv.s must be explicitly declared when
 # bundling is enabled
 GetOptions(
@@ -21,7 +21,11 @@ GetOptions(
     'nobackup|n'    => \$nobackup,
     'recursive|r'   => \$recursive,
     'verbose|v'     => \$verbose,
+    'columns|c=i'   => \$columns,
 ) or pod2usage( 2 );
+
+$columns = 76 # use Text::Wrap's default
+  unless $columns;
 
 unless (@ARGV) {
     pod2usage( -msg => "Options: --Ignore --inplace --nobackup --recursive require <filelist>", -exitval => 2 )
@@ -42,6 +46,7 @@ if (@ARGV) {
         inplace     => $inplace,
         ignore      => [map { glob_to_regex($_) } @$ignore],
         nobackup    => $nobackup,
+        columns     => $columns,
     );
 } else {
     # always filter STDIN - we don't know how large or how slow it will be
@@ -62,7 +67,7 @@ podtidy - reformat Pod documents without affecting other text or code
 =head1 SYNOPSIS
 
     podtidy [--inplace] [--nobackup] [--recursive] [--verbose]
-            {[--Ignore <pattern>]} [<filelist>]
+            [--columns=NUM] {[--Ignore <pattern>]} [<filelist>]
     podtidy [--help|-h|-?]
 
 =head1 DESCRIPTION
@@ -138,6 +143,12 @@ This is a list of filenames and/or directories if C<--recursive> is specified.
 If it is omitted input will be read from C<STDIN>.
 
 This list is optional.
+
+=item * --columns|-c NUM
+
+Set the width of the wrapped columns to NUM, default is 76
+
+This flag is optional.
 
 =item * --help|-h|-?
 

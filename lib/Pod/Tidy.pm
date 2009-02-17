@@ -7,7 +7,7 @@ package Pod::Tidy;
 use strict;
 use warnings FATAL => qw( all );
 
-use vars qw( $VERSION );
+use vars qw( $VERSION $columns );
 $VERSION = '0.09';
 
 use Fcntl ':flock';
@@ -18,6 +18,8 @@ use File::Copy qw( cp );
 use Pod::Find qw( contains_pod );
 use Pod::Simple;
 use Pod::Wrap::Pretty;
+use Text::Wrap qw($columns);
+$columns = 76; # use Text::Wrap's default
 
 use vars qw( $BACKUP_POSTFIX);
 # used by backup_file
@@ -26,6 +28,8 @@ $BACKUP_POSTFIX = "~";
 sub tidy_files
 {
     my %p = @_;
+
+    $columns = $p{columns} if $p{columns};
 
     my $queue = build_pod_queue(
         files       => $p{files},
