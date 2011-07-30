@@ -1,6 +1,4 @@
 # Copyright (C) 2005  Joshua Hoblitt
-#
-# $Id$
 
 package Test::Pod::Tidy;
 
