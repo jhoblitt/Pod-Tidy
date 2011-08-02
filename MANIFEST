@@ -2,7 +2,8 @@ Build.PL
 Changes
 LICENSE
 MANIFEST
-META.yml
+MYMETA.json
+MYMETA.yml
 Makefile.PL
 README
 Todo
