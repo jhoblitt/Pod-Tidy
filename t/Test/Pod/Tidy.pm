@@ -17,6 +17,7 @@ use vars qw(
     $INVALID_POD
     $POD_WS_TAIL
     $POD_WS_TRIMMED
+    $POD_IDENTIFIER_BLOCK
 );
 
 @EXPORT = qw(
@@ -26,6 +27,7 @@ use vars qw(
     $INVALID_POD
     $POD_WS_TAIL
     $POD_WS_TRIMMED
+    $POD_IDENTIFIER_BLOCK
 );
 
 $MESSY_POD = encode( Native =><<END );
@@ -135,6 +137,31 @@ C source tests are usually located in F<t/src/*.t>.  A simple test looks like:
     #include <stdio.h>
     #include "parrot/parrot.h"
     #include "parrot/embed.h"
+
+=cut
+END
+
+# this block of text should not be modified by processing
+$POD_IDENTIFIER_BLOCK = encode( Native =><<END );
+=head3 B<list>
+
+Return a list of data.
+
+=begin return_value
+
+[{
+    "id": 3,
+    "start_date": "2011-10-01 00:00:00",
+    "end_date": "2011-10-03 00:00:00",
+    "name": "A Name",
+}, {
+    "id": 5,
+    "start_date": "2011-09-01 00:00:00",
+    "end_date": "2011-09-03 00:00:00",
+    "name": "Another Name",
+}]
+
+=end return_value
 
 =cut
 END

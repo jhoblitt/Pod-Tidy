@@ -7,7 +7,7 @@ use warnings FATAL => qw( all );
 
 use lib qw( ./lib ./t );
 
-use Test::More tests => 2;
+use Test::More tests => 3;
 
 use IO::String;
 use Pod::Wrap::Pretty;
@@ -33,4 +33,15 @@ use Test::Pod::Tidy;
     $w->parse_from_filehandle($input, $output);
 
     is(${$output->string_ref}, $POD_WS_TRIMMED, "test ws tail trimming");
+}
+
+{
+    my $input = IO::String->new($POD_IDENTIFIER_BLOCK);
+    my $output = IO::String->new;
+
+    my $w = Pod::Wrap::Pretty->new;
+
+    $w->parse_from_filehandle($input, $output);
+
+    is(${$output->string_ref}, $POD_IDENTIFIER_BLOCK, "test identifier block non-mangling");
 }
