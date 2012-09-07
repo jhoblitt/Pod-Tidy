@@ -9,6 +9,7 @@ use lib qw( ./lib ./t );
 
 use Test::More tests => 38;
 
+use Fcntl ':flock';
 use File::Temp qw( tempdir );
 use Pod::Tidy;
 use Test::Cmd;
@@ -27,6 +28,10 @@ isa_ok($cmd, 'Test::Cmd');
     $tmp_valid->flush;
     $tmp_invalid->flush;
 
+    # Unlock the file handles since Pod::Tidy locks them
+    flock($tmp_valid, LOCK_UN);
+    flock($tmp_invalid, LOCK_UN);
+
     my @files = ( $tmp_valid->filename, $tmp_invalid->filename);
 
     $cmd->run(args => join " ", @files);
@@ -44,6 +49,10 @@ isa_ok($cmd, 'Test::Cmd');
     $tmp_valid->flush;
     $tmp_invalid->flush;
 
+    # Unlock the file handles since Pod::Tidy locks them
+    flock($tmp_valid, LOCK_UN);
+    flock($tmp_invalid, LOCK_UN);
+
     $cmd->run(args => "$dir");
 
     # recusion is disabled by default
@@ -60,6 +69,10 @@ isa_ok($cmd, 'Test::Cmd');
     $tmp_valid->flush;
     $tmp_invalid->flush;
 
+    # Unlock the file handles since Pod::Tidy locks them
+    flock($tmp_valid, LOCK_UN);
+    flock($tmp_invalid, LOCK_UN);
+
     $cmd->run(args => "-r $dir");
 
     cmd_output($cmd, 0, qr/^\Q$TIDY_POD\E$/, qr/^$/);
@@ -74,6 +87,10 @@ isa_ok($cmd, 'Test::Cmd');
     print $tmp_invalid $INVALID_POD;
     $tmp_valid->flush;
     $tmp_invalid->flush;
+
+    # Unlock the file handles since Pod::Tidy locks them
+    flock($tmp_valid, LOCK_UN);
+    flock($tmp_invalid, LOCK_UN);
 
     $cmd->run(args => "-ri $dir");
 
@@ -95,6 +112,10 @@ isa_ok($cmd, 'Test::Cmd');
     print $tmp_invalid $INVALID_POD;
     $tmp_valid->flush;
     $tmp_invalid->flush;
+
+    # Unlock the file handles since Pod::Tidy locks them
+    flock($tmp_valid, LOCK_UN);
+    flock($tmp_invalid, LOCK_UN);
 
     $cmd->run(args => "-rin $dir");
 
@@ -120,6 +141,11 @@ isa_ok($cmd, 'Test::Cmd');
     $tmp_valid2->flush;
     $tmp_invalid->flush;
 
+    # Unlock the file handles since Pod::Tidy locks them
+    flock($tmp_valid, LOCK_UN);
+    flock($tmp_valid2, LOCK_UN);
+    flock($tmp_invalid, LOCK_UN);
+
     $cmd->run(args => "-r $dir");
 
     seek $tmp_valid, 0, 0;
@@ -141,6 +167,11 @@ isa_ok($cmd, 'Test::Cmd');
     $tmp_valid2->flush;
     $tmp_invalid->flush;
 
+    # Unlock the file handles since Pod::Tidy locks them
+    flock($tmp_valid, LOCK_UN);
+    flock($tmp_valid2, LOCK_UN);
+    flock($tmp_invalid, LOCK_UN);
+
     $cmd->run(args => "-r $dir -I $tmp_valid");
 
     cmd_output($cmd, 0, qr/^\Q$TIDY_POD\E$/, qr/^$/);
@@ -161,6 +192,12 @@ isa_ok($cmd, 'Test::Cmd');
     $tmp_valid2->flush;
     $tmp_valid3->flush;
     $tmp_invalid->flush;
+
+    # Unlock the file handles since Pod::Tidy locks them
+    flock($tmp_valid, LOCK_UN);
+    flock($tmp_valid2, LOCK_UN);
+    flock($tmp_valid3, LOCK_UN);
+    flock($tmp_invalid, LOCK_UN);
 
     $cmd->run(args => "-r $dir -I $tmp_valid -I $tmp_valid2");
 
