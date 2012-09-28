@@ -10,6 +10,7 @@ use lib qw( ./lib ./t );
 use Test::More tests => 12;
 
 use IO::String;
+use Fcntl ':flock';
 use File::Temp qw( tempdir );
 use Pod::Tidy;
 use Test::Pod::Tidy;
@@ -23,6 +24,9 @@ use Test::Pod::Tidy;
     print $tmp_invalid $INVALID_POD;
     $tmp_valid->flush;
     $tmp_invalid->flush;
+
+    # Unlock the file handle since Pod::Tidy locks it
+    flock($tmp_valid, LOCK_UN);
 
     my $output;
     tie *STDOUT, 'IO::String', \$output;
@@ -45,6 +49,9 @@ use Test::Pod::Tidy;
     $tmp_valid->flush;
     $tmp_invalid->flush;
 
+    # Unlock the file handle since Pod::Tidy locks it
+    flock($tmp_valid, LOCK_UN);
+
     my $output;
     tie *STDOUT, 'IO::String', \$output;
 
@@ -66,6 +73,9 @@ use Test::Pod::Tidy;
     print $tmp_invalid $INVALID_POD;
     $tmp_valid->flush;
     $tmp_invalid->flush;
+
+    # Unlock the file handle since Pod::Tidy locks it
+    flock($tmp_valid, LOCK_UN);
 
     my $output;
     tie *STDOUT, 'IO::String', \$output;
@@ -91,6 +101,11 @@ use Test::Pod::Tidy;
     $tmp_valid->flush;
     $tmp_valid2->flush;
     $tmp_invalid->flush;
+
+    # Unlock the file handles since Pod::Tidy locks them
+    flock($tmp_valid, LOCK_UN);
+    flock($tmp_valid2, LOCK_UN);
+    flock($tmp_invalid, LOCK_UN);
 
     my $output;
     tie *STDOUT, 'IO::String', \$output;
@@ -120,6 +135,12 @@ use Test::Pod::Tidy;
     $tmp_valid2->flush;
     $tmp_valid3->flush;
     $tmp_invalid->flush;
+
+    # Unlock the file handles since Pod::Tidy locks them
+    flock($tmp_valid, LOCK_UN);
+    flock($tmp_valid2, LOCK_UN);
+    flock($tmp_valid3, LOCK_UN);
+    flock($tmp_invalid, LOCK_UN);
 
     my $output;
     tie *STDOUT, 'IO::String', \$output;

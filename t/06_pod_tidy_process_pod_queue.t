@@ -14,12 +14,17 @@ use IO::String;
 use Pod::Tidy;
 use Test::Pod::Tidy;
 
+use Fcntl ':flock';
+
 {
     my $dir = tempdir( CLEANUP => 1 );
     my $tmp_valid = File::Temp->new( DIR => $dir );
 
     print $tmp_valid $MESSY_POD;
     $tmp_valid->flush;
+
+    # Unlock the file handle since Pod::Tidy locks it
+    flock($tmp_valid, LOCK_UN);
 
     my $output;
     tie *STDOUT, 'IO::String', \$output;
@@ -38,6 +43,9 @@ use Test::Pod::Tidy;
 
     print $tmp_valid $MESSY_POD;
     $tmp_valid->flush;
+
+    # Unlock the file handle since Pod::Tidy locks it
+    flock($tmp_valid, LOCK_UN);
 
     my $processed = Pod::Tidy::process_pod_queue(
         queue   => [$tmp_valid->filename],
@@ -59,6 +67,9 @@ use Test::Pod::Tidy;
 
     print $tmp_valid $MESSY_POD;
     $tmp_valid->flush;
+
+    # Unlock the file handle since Pod::Tidy locks it
+    flock($tmp_valid, LOCK_UN);
 
     my $processed = Pod::Tidy::process_pod_queue(
         queue       => [$tmp_valid->filename],
